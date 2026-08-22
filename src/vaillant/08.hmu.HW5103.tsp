@@ -14,7 +14,7 @@ namespace Hmu_HW5103 {
   @base(MF, 0x11)
   model r_1 {}
 
-  @condition(Id.Id.sw, ">=902")
+  @condition(Id.Id.sw, ">=602")
   @inherit(r_1)
   @ext(0x18, 1)
   model CompressorHc {
@@ -23,7 +23,7 @@ namespace Hmu_HW5103 {
     cycles: cntstarts;
   }
 
-  @condition(Id.Id.sw, ">=902")
+  @condition(Id.Id.sw, ">=602")
   @inherit(r_1)
   @ext(0x18, 0x2)
   model CompressorHwc {
