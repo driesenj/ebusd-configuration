@@ -39,7 +39,7 @@ namespace Vwz {
   @ext(1)
   model Status01 {
     /** flow temperature */
-    temp: temp1;
+    flowTemperature: temp1;
 
     /** return temperature */
     temp_1: temp1;
@@ -51,7 +51,7 @@ namespace Vwz {
     temp_3: temp1;
 
     /** storage temperature */
-    temp_4: temp1;
+    bufferTemperature: temp1;
 
     /** pump status */
     pumpstate: pumpstate;
