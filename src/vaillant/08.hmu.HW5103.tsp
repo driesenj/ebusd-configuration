@@ -10,6 +10,10 @@ namespace Vaillant;
 
 // @zz(0x08)
 namespace Hmu_HW5103 {
+  // Heating Master Unit
+  // HC: Heating Circuit
+  // HWC: Hot Water Circuit
+
   /** default *r */
   @base(MF, 0x11)
   model r_1 {}
@@ -79,6 +83,7 @@ namespace Hmu_HW5103 {
   }
 
   @inherit(r_2)
+  @poll(9)
   @ext(0x10)
   model YieldHc {
     @unit("kWh")
@@ -86,6 +91,7 @@ namespace Hmu_HW5103 {
   }
 
   @inherit(r_2)
+  @poll(3)
   @ext(0x11)
   model CopHc {
     @divisor(10)
@@ -109,6 +115,7 @@ namespace Hmu_HW5103 {
 
   /** energy yield hot water */
   @inherit(r_2)
+  @poll(9)
   @ext(0x16)
   @Ebus.example("2227 kWh", "08b51a0405ff3216", "0aff0826b3080000000000")
   model YieldHwc {
@@ -116,6 +123,7 @@ namespace Hmu_HW5103 {
   }
 
   @inherit(r_2)
+  @poll(3)
   @ext(0x17)
   model CopHwc {
     @divisor(10)
@@ -123,6 +131,7 @@ namespace Hmu_HW5103 {
   }
 
   @inherit(r_2)
+  @poll(3)
   @ext(0x1e)
   model CompressorBlocktime {
     @unit("min")
@@ -130,6 +139,7 @@ namespace Hmu_HW5103 {
   }
 
   @inherit(r_2)
+  @poll(2)
   @ext(0x1f)
   model SupplyTempWeighted {
     value: temp;
@@ -137,6 +147,7 @@ namespace Hmu_HW5103 {
 
   /** current flow temperature */
   @inherit(r_2)
+  @poll(1)
   @ext(0x20)
   model FlowTemp {
     value: temp;
@@ -144,6 +155,7 @@ namespace Hmu_HW5103 {
 
   /** current energy integral */
   @inherit(r_2)
+  @poll(2)
   @ext(0x21)
   model EnergyIntegral {
     value: integral;
@@ -151,6 +163,7 @@ namespace Hmu_HW5103 {
 
   /** current yielded energy from the environment */
   @inherit(r_2)
+  @poll(1)
   @ext(0x23)
   model CurrentYieldPower {
     @unit("kW")
@@ -160,6 +173,7 @@ namespace Hmu_HW5103 {
 
   /** current power consumption */
   @inherit(r_2)
+  @poll(1)
   @ext(0x24)
   model CurrentConsumedPower {
     @unit("kW")
@@ -169,6 +183,7 @@ namespace Hmu_HW5103 {
 
   /** current compressor utilization */
   @inherit(r_2)
+  @poll(1)
   @ext(0x25)
   @Ebus.example("52%", "3108b51a0405ff3225", "0aff08384d030000000000")
   model CurrentCompressorUtil {
@@ -191,6 +206,7 @@ namespace Hmu_HW5103 {
   }
 
   @inherit(r_2)
+  @poll(9)
   @ext(0x2C)
   model YieldCooling {
     @unit("kWh")
@@ -199,6 +215,7 @@ namespace Hmu_HW5103 {
   }
 
   @inherit(r_2)
+  @poll(3)
   @ext(0x2D)
   model CopCooling {
     @divisor(10)
@@ -206,6 +223,7 @@ namespace Hmu_HW5103 {
   }
 
   @inherit(r_2)
+  @poll(2)
   @ext(0x3c)
   model BuildingCircuitFlow {
     @unit("l/h")
@@ -214,6 +232,7 @@ namespace Hmu_HW5103 {
 
   @condition(Id.Id.sw, ">=902")
   @inherit(r_2)
+  @poll(2)
   @ext(0x3d)
   model FlowPressure {
     @unit("bar")
@@ -222,6 +241,7 @@ namespace Hmu_HW5103 {
   }
 
   @inherit(r_2)
+  @poll(9)
   @ext(0x4d)
   model TotalEnergyUsage {
     @unit("kWh")
@@ -237,6 +257,7 @@ namespace Hmu_HW5103 {
   }
 
   @inherit(r_7)
+  @poll(3)
   @ext(0xd, 0xa)
   model RunDataCompressorSpeed {
     @unit("rps")
@@ -245,48 +266,56 @@ namespace Hmu_HW5103 {
 
   /** (EEV Position in different scale?) */
   @inherit(r_7)
+  @poll(3)
   @ext(0x28, 0xa)
   model RunDataEEVPositionAbs {
     value: UIN;
   }
 
   @inherit(r_7)
+  @poll(3)
   @ext(0x47, 0xa)
   model RunDataFan1Speed {
     value: fanspeedv;
   }
 
   @inherit(r_7)
+  @poll(3)
   @ext(0x49, 0xa)
   model RunDataFan2Speed {
     value: fanspeedv;
   }
 
   @inherit(r_7)
+  @poll(3)
   @ext(0x53, 0xd)
   model RunDataStatuscode {
     value: hmucode;
   }
 
   @inherit(r_7)
+  @poll(3)
   @ext(0x6a, 0x9)
   model RunDataHighPressure {
     value: pressv;
   }
 
   @inherit(r_7)
+  @poll(3)
   @ext(0x98, 0x8)
   model RunDataCompressorInletTemp {
     value: tempv;
   }
 
   @inherit(r_7)
+  @poll(3)
   @ext(0xa2, 0x8)
   model RunDataCompressorOutletTemp {
     value: tempv;
   }
 
   @inherit(r_7)
+  @poll(3)
   @ext(0xac, 0x8)
   model RunDataEEVOutletTemp {
     value: tempv;
@@ -330,6 +359,7 @@ namespace Hmu_HW5103 {
   }
 
   @inherit(r_7)
+  @poll(3)
   @ext(0xc5, 0x9)
   model RunDataBuildingCPumpPower {
     @unit("%")
@@ -380,6 +410,7 @@ namespace Hmu_HW5103 {
   }
 
   @inherit(r_7)
+  @poll(3)
   @ext(0xde, 0x8)
   model RunDataAirInletTemp {
     value: tempv;
@@ -394,6 +425,7 @@ namespace Hmu_HW5103 {
   }
 
   @inherit(r_x16)
+  @poll(9)
   @ext(0x14)
   model PowerConsumptionHmu {
     @unit("kW")

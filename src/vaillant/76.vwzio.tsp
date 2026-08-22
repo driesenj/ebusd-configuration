@@ -20,6 +20,10 @@ namespace Vwz {
     ign: IGN;
   }
 
+  /** default *r */
+  @base(MF, 0x11)
+  model r_1 {}
+
   /** default *ws for user level "service" */
   @write
   @auth("service")
@@ -28,6 +32,29 @@ namespace Vwz {
     @maxLength(3)
     @constValue("03FFFF")
     ignore: HEX;
+  }
+
+  /** Vorlauftemperatur/Rücklauftemperatur/Aussentemperatur/WW Temperatur/Speichertemperatur/Pumpenstatus */
+  @inherit(r_1)
+  @ext(1)
+  model Status01 {
+    /** flow temperature */
+    temp: temp1;
+
+    /** return temperature */
+    temp_1: temp1;
+
+    /** outside temperature */
+    temp_2: temp2;
+
+    /** hot water temperature */
+    temp_3: temp1;
+
+    /** storage temperature */
+    temp_4: temp1;
+
+    /** pump status */
+    pumpstate: pumpstate;
   }
 
   /** enable test 3 way valve */
