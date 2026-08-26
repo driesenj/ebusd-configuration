@@ -43,6 +43,13 @@ namespace Hmu_HW5103 {
     ign: IGN;
   }
 
+
+  @base(MF, 0x14, 0x5)
+  model rs {
+    @maxLength(2)
+    ign: IGN;
+  }
+
   @inherit(r_2)
   @ext(0)
   model YieldHcDay {
@@ -230,7 +237,7 @@ namespace Hmu_HW5103 {
     value: UIN;
   }
 
-  @inherit(r_2)
+  @inherit(rs)
   @poll(6)
   @ext(0x2a)
   model BuildingCircuitPressure {
