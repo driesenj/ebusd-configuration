@@ -239,7 +239,7 @@ namespace Hmu_HW5103 {
 
   @inherit(rs)
   @poll(6)
-  @ext(0x2a, 0x03)
+  @ext(0x2a, 0x03, 0xff, 0xff)
   model BuildingCircuitPressure {
     /** T.0.42 */
     @unit("bar")
