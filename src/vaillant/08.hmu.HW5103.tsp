@@ -230,6 +230,16 @@ namespace Hmu_HW5103 {
     value: UIN;
   }
 
+  @inherit(r_2)
+  @poll(6)
+  @ext(0x2a)
+  model BuildingCircuitPressure {
+    /** T.0.42 */
+    @unit("bar")
+    @divisor(10)
+    value: UIN;
+  }
+
   @condition(Id.Id.sw, ">=902")
   @inherit(r_2)
   @poll(2)
